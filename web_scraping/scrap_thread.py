@@ -83,7 +83,7 @@ def make_dataset():
 
 
 def main(img_urls):
-    # download_img(img_urls)
+    download_img(img_urls)
     make_dataset()
 
 

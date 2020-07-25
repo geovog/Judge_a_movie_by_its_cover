@@ -9,7 +9,7 @@ import requests
 
 df = pd.read_csv("C:/Users/manta/Desktop/title-basics/data.tsv", sep="\t")
 MAX_THREADS = 30
-DIRECTORY = os.fsencode("C:/IMDB_dataset/temp/")
+DIRECTORY = "C:/IMDB_dataset/"
 asd = df['startYear'].astype(str).str[:4]
 df['startYear'] = pd.to_numeric(asd, errors='coerce')
 rslt_df = df.loc[df['startYear'] > 1999]

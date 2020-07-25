@@ -1,7 +1,6 @@
 import time as t
 import csv
 import os
-
 import pandas as pd
 import concurrent.futures
 from bs4 import BeautifulSoup
@@ -40,6 +39,7 @@ def download_url(url):
     urlname = titlenamepart[4]
     try:
         the_url = soup.find("link", {"rel": "image_src"})['href']
+        # the records with this png on their listing, did not have an image.
         if the_url == "https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/imdb_fb_logo._CB1542065250_.png":
             pass
         else:
@@ -83,7 +83,7 @@ def make_dataset():
 
 
 def main(img_urls):
-    download_img(img_urls)
+    # download_img(img_urls)
     make_dataset()
 
 

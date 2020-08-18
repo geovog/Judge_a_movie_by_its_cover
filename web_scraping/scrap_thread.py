@@ -8,8 +8,8 @@ import shutil
 import requests
 
 df = pd.read_csv("C:/Users/manta/Desktop/title-basics/data.tsv", sep="\t")
-MAX_THREADS = 30
-DIRECTORY = "C:/IMDB_dataset/"
+MAX_THREADS = 60
+DIRECTORY = "C:/IMDB_dataset2/"
 asd = df['startYear'].astype(str).str[:4]
 df['startYear'] = pd.to_numeric(asd, errors='coerce')
 rslt_df = df.loc[df['startYear'] > 1999]
@@ -23,7 +23,14 @@ rsltdf = rsltdf[~rsltdf.titleType.str.contains("videoGame")]
 rsltdf = rsltdf[~rsltdf.titleType.str.contains("video")]
 rsltdf = rsltdf.reset_index(drop=True)
 
+
+d_columns = ['tconst', 'desc']
+df_ = pd.DataFrame(columns=d_columns)
+
+
 result = []
+descs = []
+d_tittles = []
 
 for value in rsltdf["tconst"]:
     result.append('https://www.imdb.com/title/' + value)
@@ -43,6 +50,9 @@ def download_url(url):
         if the_url == "https://m.media-amazon.com/images/G/01/imdb/images-ANDW73HA/imdb_fb_logo._CB1542065250_.png":
             pass
         else:
+            desc = soup.find('meta', {'name': 'description'}).get('content')
+            row = [urlname, desc]
+            df_.loc[len(df_)] = row
             the_url = the_url.split('_V1_', 1)[0]
             response = requests.get(the_url + '_V1_.jpg', stream=True)
             # save image
@@ -58,11 +68,38 @@ def download_url(url):
         pass
 
 
+# def download_descrption(url):
+#     d_header = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0', }
+#     d_content = requests.get(url, headers=d_header)
+#     d_soup = BeautifulSoup(d_content.text, 'html.parser')
+#     d_titlenamepart = url.split(sep='/')
+#     d_urlname = d_titlenamepart[4]
+#     try:
+#         desc = d_soup.find('meta', {'name': 'description'}).get('content')
+#         descs.append(str(desc))
+#         d_tittles.append(d_urlname)
+#
+#         t.sleep(0.5)
+#     except Exception as e:
+#         print(e + " " + d_urlname)
+#         with open(r'exceptions', 'ab') as f:
+#             writer = csv.writer(f)
+#             writer.writerow(d_urlname)
+#         pass
+
+
 def download_img(img_urls):
     threads = min(MAX_THREADS, len(img_urls))
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=threads) as executor:
         executor.map(download_url, img_urls)
+
+
+# def download_descs(img_urls):
+#     threads = min(MAX_THREADS, len(img_urls))
+#
+#     with concurrent.futures.ThreadPoolExecutor(max_workers=threads) as executor:
+#         executor.map(download_descrption, img_urls)
 
 
 def make_dataset():
@@ -84,6 +121,8 @@ def make_dataset():
 
 def main(img_urls):
     download_img(img_urls)
+    # download_descs(img_urls)
+    df_.to_csv('df_new.csv', index=False)
     make_dataset()
 
 

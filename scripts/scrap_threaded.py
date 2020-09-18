@@ -91,8 +91,10 @@ def make_dataset(descr):
         nameslist.append(names[0])
 
     dfnew = rsltdf[rsltdf['tconst'].isin(nameslist)]
+    
     # drop rows which have no genre, in our case they had the '\N' value
     dfnew = dfnew[~dfnew.genres.str.contains(r'\\N')]
+    
     # merge dataset with descriptions dataset on tittle id
     df_merge_col = pd.merge(dfnew, descr, on='tconst')
     df_merge_col.to_csv('new.csv', index=False)

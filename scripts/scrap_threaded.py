@@ -41,6 +41,7 @@ descs = []
 # create list of urls to loop through
 for value in rsltdf["tconst"]:
     result.append('https://www.imdb.com/title/' + value)
+
 # add column 'urls'
 rsltdf["urls"] = result
 

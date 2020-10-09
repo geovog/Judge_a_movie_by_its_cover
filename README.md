@@ -11,7 +11,7 @@
  - Conda
  - Python 3.7.9
  - Tensorflow 2
- - Graphviz 
+ - Graphviz (https://graphviz.gitlab.io/download/)
  - Jupyterlab
  - Sklearn
  

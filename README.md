@@ -16,6 +16,7 @@ Pre-trained word vectors used:
 http://nlp.stanford.edu/data/glove.6B.zip
 
 Dataset(Resized to 224X224):
+
 http://elmo1988.quickconnect.to/sharing/eTVxfqxdw
 
 Csv:

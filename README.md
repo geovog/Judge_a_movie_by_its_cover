@@ -7,6 +7,11 @@
 - In phase 4 we create bidirectional LSTM model followed by a Convolutional-1D layer and lastly a Dense layer.
 - In phase 5 we create a multi-input model using both image and text data in a try to create a multi-modal model which will make predictions based on both of the input types.
 
+Trained models links on my personal drive (due to github size limitations)
+
+https://drive.google.com/drive/folders/1_SN5Ol6m5YHjaWII8iVsqkARQN0Y2kC3?usp=sharing
+
+Dataset(Resized to 224X224):
 
 ## Prerequisites:
  

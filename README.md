@@ -18,6 +18,7 @@ http://nlp.stanford.edu/data/glove.6B.zip
 Dataset(Resized to 224X224):
 
 Csv:
+
 https://drive.google.com/file/d/16Fso0nPjPVIkaA5mvww9P-HqA_kMlFZ-/view?usp=sharing
 
 ## Prerequisites:

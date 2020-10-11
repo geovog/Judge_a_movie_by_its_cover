@@ -11,6 +11,10 @@ Trained models links on my personal drive (due to github size limitations)
 
 https://drive.google.com/drive/folders/1_SN5Ol6m5YHjaWII8iVsqkARQN0Y2kC3?usp=sharing
 
+Pre-trained word vectors used:
+
+http://nlp.stanford.edu/data/glove.6B.zip
+
 Dataset(Resized to 224X224):
 
 ## Prerequisites:
